@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="<?php echo e(config('toastify.cdn.css')); ?>"><?php /**PATH C:\File PENS\develops\web-prak\Charity\vendor\redot\laravel-toastify\src/../resources/views/css.blade.php ENDPATH**/ ?>

@@ -9,8 +9,9 @@ use App\Category;
 use App\Role;
 use App\User;
 use App\Post;
-use File;
 use Auth;
+use Exception;
+use Illuminate\Support\Facades\File;
 use Validator;
 
 class dashboardPostController extends Controller
@@ -59,44 +60,49 @@ class dashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        //validate
+        try {
+          //validate
         $this->validate($request, [
-            'image' => 'mimes:jpeg,png,jpg', //only allow this type extension file.
-        ]);
-        // New Post
-        $Post = new Post;
-        $Post->Title_en = $request->input('Title_en');
-        $Post->Title_ar = $request->input('Title_ar');
-        $Post->Title_gr = $request->input('Title_gr');
-        $Post->author_id = $request->input('author_id');
-        $Post->category_id = $request->input('category_id');
-        $Post->slug = $request->input('slug');
-        $Post->seo_title = $request->input('seo_title');
-        $Post->excerpt = $request->input('excerpt');
-        $Post->body_en = $request->input('body_en');
-        $Post->body_ar = $request->input('body_ar');
-        $Post->body_gr = $request->input('body_gr');
-        $Post->meta_description = $request->input('meta_description');
-        $Post->meta_keywords = $request->input('meta_keywords');
-        $Post->featured = $request->input('featured');
-        // THIS FUNCTION UPDATE NEW IMAGE Settings IN PAGE Settings UPDATE //
-        if ($request->file('image')){  
-          $file = $request->file('image');
-          $destinationPath = public_path('images');
-          $viewimage = 'images/';         
-          $filename = $viewimage.$file->getClientOriginalName();
-          $file->move($destinationPath, $filename); 
-          $Post->image = $filename;
-          // THIS TO SAVE  Settings UPDATE //
-          $Post->save(); 
-        }else{
-          $Post->save();  
+          'image' => 'mimes:jpeg,png,jpg', //only allow this type extension file.
+      ]);
+      // New Post
+      $Post = new Post;
+      $Post->Title_en = $request->input('Title_en');
+      $Post->Title_ar = $request->input('Title_ar');
+      $Post->Title_gr = $request->input('Title_gr');
+      $Post->author_id = $request->input('author_id');
+      $Post->category_id = $request->input('category_id');
+      $Post->slug = $request->input('slug');
+      $Post->seo_title = $request->input('seo_title');
+      $Post->excerpt = $request->input('excerpt');
+      $Post->body_en = $request->input('body_en');
+      $Post->body_ar = $request->input('body_ar');
+      $Post->body_gr = $request->input('body_gr');
+      $Post->meta_description = $request->input('meta_description');
+      $Post->meta_keywords = $request->input('meta_keywords');
+      $Post->featured = $request->input('featured');
+      // THIS FUNCTION UPDATE NEW IMAGE Settings IN PAGE Settings UPDATE //
+      if ($request->file('image')){  
+        $file = $request->file('image');
+        $destinationPath = public_path('images');
+        $viewimage = 'images/';         
+        $filename = $viewimage.$file->getClientOriginalName();
+        $file->move($destinationPath, $filename); 
+        $Post->image = $filename;
+        // THIS TO SAVE  Settings UPDATE //
+        $Post->save(); 
+      }else{
+        $Post->save();  
+      }
+        $Post->save();
+
+              return redirect()->TO('dashboard/dashboardPosts')
+
+                      ->with('success','Post created successfully.');
         }
-          $Post->save();
-
-                return redirect()->TO('dashboard/dashboardPosts')
-
-                        ->with('success','Post created successfully.');
+        catch(Exception $e) {
+          return back()->withInput()->withErrors(['error' => 'something went wrong.']);
+        }
     }
 
     /**
@@ -125,7 +131,8 @@ class dashboardPostController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        // EDIT Post
+        try{
+          // EDIT Post
         $Post = Post::where('slug', '=', $slug)->firstOrFail();
         //validate
         $this->validate($request, [
@@ -165,6 +172,10 @@ class dashboardPostController extends Controller
                 return redirect()->TO('dashboard/dashboardPosts')
 
                         ->with('success','Post created successfully.');
+        }
+        catch(Exception $e) {
+          return back()->withInput()->withErrors(['error' => 'something went wrong.']);
+        }
     }
 
     /**

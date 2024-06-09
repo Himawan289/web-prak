@@ -1,6 +1,7 @@
 @extends('english.layout.main')
 
 @section('content')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <!-- ============================================================= Content Start ============================================================= -->
 	<!--================ start banner Area =================-->
 	<section class="home-banner-area relative" id="home" data-parallax="scroll" data-image-src="{{ asset(Setting()->HomePicture) }}">
@@ -9,20 +10,34 @@
 			<div class="row fullscreen justify-content-lg-begin">
 				<div class="banner-content col-lg-7">
 					<!-- ===============================  Home  ======================================== -->
-					@if ($message = Session::get('success'))
-					<div class="alert alert-success" role="alert">
-			          {!! $message !!}
-			        </div>
-                    <?php Session::forget('success');?>
-                    @endif
-                    <!-- ===============================  Home  ======================================== -->
-                    @if ($message = Session::get('error'))
-                    <div class="alert alert-success" role="alert">
-			          {!! $message !!}
-			        </div>
-                    <?php Session::forget('error');?>
-                    <!-- ===============================  Home  ======================================== -->
-                    @endif
+					@if (Auth::check())
+						@if ($message = Auth::user()->name)
+								<script>
+									Toastify({
+										text: "Selamat Datang {{ Auth::user()->name }}!",
+										duration: 5000,
+										destination: "https://github.com/apvarun/toastify-js",
+										newWindow: true,
+										close: true,
+										gravity: "top", // `top` or `bottom`
+										position: "right", // `left`, `center` or `right`
+										stopOnFocus: true, // Prevents dismissing of toast on hover
+										style: {
+											width: "300px",
+											background: "#254336",
+											fontFamily: "Quicksand, sans-serif",
+											textAlign: "center",
+											fontSize: "1.3em",
+											color: "white",
+											lineHeight: "1.5"
+										},
+										onClick: function(){} // Callback after click
+									}).showToast();
+								</script>
+						@endif
+					@else
+							
+					@endif
 					<h1>
 						<!-- ===============================  Home  ======================================== -->
 						{{ Setting()->title_home_en }} <br>
@@ -360,3 +375,4 @@
 	<!--================ End Gallery Area =================-->
 <!-- ============================================================= Content end   ============================================================= -->
 @endsection
+

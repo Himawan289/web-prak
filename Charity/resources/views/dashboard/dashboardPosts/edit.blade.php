@@ -1,6 +1,14 @@
 @extends('dashboard.layouts.main')
 
 @section('dashboardcontent')
+@if ($message = $errors->has('error'))
+<div class="alert alert-royal-blue alert-dismissible fade show mb-0" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">×</span>
+</button>
+<i class="icon-material-outline-check mx-2"></i>
+<strong>Error!</strong> {{ $errors->first('error') }}</div>
+@endif
 <!-- ====================== links Posts Content Start store =============================================== -->
 <div class="main-content-container container-fluid px-4">
     <!-- Page Header -->
@@ -29,23 +37,7 @@
               <!-- ====================== links Posts Content Start store =============================================== -->
               <div class="form-control form-control-lg mb-3">
                 <label for="displayEmail">Author Post</label>
-                <select class="custom-select" name="author_id">
-                  <!-- ====================== links Posts Content Start store =============================================== -->
-                @if(isset($Post->User->name))
-                 <option value="{{ $Post->author_id }}" selected="">{{ $Post->User->name }}</option>
-                @else
-                <!-- ====================== links Posts Content Start store =============================================== -->
-                 <option value="1" selected="">NO User</option>
-                @endif
-                <!-- ====================== links Posts Content Start store =============================================== -->
-                @if($Users !== NULL)
-                @foreach($Users as $User)
-                  <option value="{{ $User->id }}">{{ $User->name }}</option>
-                @endforeach
-                @else
-                 <option value="1" selected="">NO User</option>
-                @endif
-                </select>
+                <input class="form-control form-control-lg mb-3" type="text" placeholder="Your Post Seo Title" name="author_id" value="{{ $Post->author_id }}">
                 <!-- ====================== links Posts Content Start store =============================================== -->
               </div>
               <!-- ====================== links Posts Content Start store =============================================== -->

@@ -1,6 +1,39 @@
 @extends('dashboard.layouts.main')
 
 @section('dashboardcontent')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <script>
+                  Toastify({
+										text: "{{ $error }}",
+										duration: 5000,
+										destination: "https://github.com/apvarun/toastify-js",
+										newWindow: true,
+										close: true,
+										gravity: "top", // `top` or `bottom`
+										position: "right", // `left`, `center` or `right`
+										stopOnFocus: true, // Prevents dismissing of toast on hover
+										style: {
+											width: "300px",
+											background: "linear-gradient(to right, #00b09b, #96c93d)",
+											fontFamily: "Quicksand, sans-serif",
+											textAlign: "center",
+											fontSize: "1.3em",
+											color: "white",
+											lineHeight: "1.5"
+										},
+										onClick: function(){} // Callback after click
+									}).showToast();
+                </script>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <!-- ================================ links Dashboard Content Start ========================================================================= -->
 <div class="main-content-container container-fluid px-4">
   <!-- Page Header -->

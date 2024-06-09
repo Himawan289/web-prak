@@ -28,6 +28,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(Setting()->FaviconOne) }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset(Setting()->FaviconTwo) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(Setting()->FaviconThree) }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="manifest" href="{{ asset('assets/img/Savicon/manifest.json') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
@@ -194,6 +195,7 @@
 <script type="text/javascript" src="{{ asset('assets/js/jquery.sticky.js') }}"></script>
 <!-- =============================== javascript ================ -->
 <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
+
 </body>
 
 </html>

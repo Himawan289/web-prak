@@ -37,18 +37,36 @@
                         <!--================ Start Popular Causes Area =================-->
                         {!! $Cause->Content_en !!}
                     </p>
+
                     <!--================ Start Popular Causes Area =================-->        
-                    <form class="form-contact contact_form" method="POST" id="payment-form" action="{!! URL::to('paypal') !!}">
-                     {!! csrf_field() !!}
-                     
-                    <input type="hidden" name="_token" value="ug6eemUCaFgFpEhMsNXGItcSnp67y91yci5xvp3J">
-                    <div class="form-group">
-                      <input class="form-control" id="amount" type="text" name="amount" placeholder="Donation with Paypal">
-                    </div>
-                    <div class="form-group mt-2 mb-5 mb-lg-0">
-                      <button type="submit" class="button button-contactForm primary-btn">Donation with PayPal</button>
-                    </div>
-                    </form>  
+                    <form class="form-contact contact_form" method="POST" id="payment-form" action="{{ route('donate.store') }}">
+                        @csrf
+                        <div class="form-group">
+                            <input class="form-control" id="amount" type="text" name="amount" placeholder="Enter Amount">
+                        </div>
+                        <div class="form-group mt-2 mb-5 mb-lg-0">
+                            <button type="submit" class="button button-contactForm primary-btn">Donate</button>
+                        </div>
+                        <input type="hidden" name="cause_id" value="{{ $Cause->id }}">
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                    </form> 
+
+                    @if($donations->isNotEmpty())
+                        <div class="mt-5">
+                            <h3 class="text-center">Recent Donations</h3>
+                            <ul class="list-group mt-10 text-center">
+                                @foreach($donations as $donation)
+                                    <li class="list-group-item mt-1">
+                                        <span class="font-weight-bold">{{ $donation->name }}</span> donated ${{ $donation->amount }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <div class="mt-3 d-flex justify-content-center">
+                                {{ $donations->links() }}
+                            </div>
+                        </div>
+                    @endif
+
                     <!--================ Start Popular Causes Area =================-->
                     </div>
                     </div>

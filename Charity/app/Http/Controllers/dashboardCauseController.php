@@ -11,6 +11,7 @@ use App\User;
 use App\Cause;
 use File;
 use Auth;
+use Exception;
 use Validator;
 
 class dashboardCauseController extends Controller
@@ -57,40 +58,45 @@ class dashboardCauseController extends Controller
      */
     public function store(Request $request)
     {
-        //validate
+        try{
+          //validate
         $this->validate($request, [
-            'image' => 'mimes:jpeg,png,jpg', //only allow this type extension file.
-        ]);
-        $Cause = new Cause;
-        $Cause->Title_en = $request->input('Title_en');
-        $Cause->Title_ar = $request->input('Title_ar');
-        $Cause->Title_gr = $request->input('Title_gr');
-        $Cause->slug = $request->input('slug');
-        $Cause->Raised = $request->input('Raised');
-        $Cause->Goal = $request->input('Goal');
-        $Cause->Content_en = $request->input('Content_en');
-        $Cause->Content_ar = $request->input('Content_ar');
-        $Cause->Content_gr = $request->input('Content_gr');
-        $Cause->Donors = $request->input('Donors');
-        $Cause->category_id = $request->input('category_id');
-        // THIS FUNCTION UPDATE NEW IMAGE Settings IN PAGE Settings UPDATE //
-        if ($request->file('image')){  
-          $file = $request->file('image');
-          $destinationPath = public_path('images');
-          $viewimage = 'images/';         
-          $filename = $viewimage.$file->getClientOriginalName();
-          $file->move($destinationPath, $filename); 
-          $Cause->image = $filename;
-          // THIS TO SAVE  Settings UPDATE //
-          $Cause->save(); 
-        }else{
-          $Cause->save();  
+          'image' => 'mimes:jpeg,png,jpg', //only allow this type extension file.
+      ]);
+      $Cause = new Cause;
+      $Cause->Title_en = $request->input('Title_en');
+      $Cause->Title_ar = $request->input('Title_ar');
+      $Cause->Title_gr = $request->input('Title_gr');
+      $Cause->slug = $request->input('slug');
+      $Cause->Raised = $request->input('Raised');
+      $Cause->Goal = $request->input('Goal');
+      $Cause->Content_en = $request->input('Content_en');
+      $Cause->Content_ar = $request->input('Content_ar');
+      $Cause->Content_gr = $request->input('Content_gr');
+      $Cause->Donors = $request->input('Donors');
+      $Cause->category_id = $request->input('category_id');
+      // THIS FUNCTION UPDATE NEW IMAGE Settings IN PAGE Settings UPDATE //
+      if ($request->file('image')){  
+        $file = $request->file('image');
+        $destinationPath = public_path('images');
+        $viewimage = 'images/';         
+        $filename = $viewimage.$file->getClientOriginalName();
+        $file->move($destinationPath, $filename); 
+        $Cause->image = $filename;
+        // THIS TO SAVE  Settings UPDATE //
+        $Cause->save(); 
+      }else{
+        $Cause->save();  
+      }
+        $Cause->save();
+
+              return redirect()->TO('dashboard/dashboardCauses')
+
+                      ->with('success','Cause created successfully.');
         }
-          $Cause->save();
-
-                return redirect()->TO('dashboard/dashboardCauses')
-
-                        ->with('success','Cause created successfully.');
+        catch(Exception $e) {
+          return back()->withInput()->withErrors(['error' => 'something went wrong.']);
+        }
     }
 
     /**
@@ -117,7 +123,8 @@ class dashboardCauseController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        $Cause = Cause::where('slug', '=', $slug)->firstOrFail();
+        try{
+          $Cause = Cause::where('slug', '=', $slug)->firstOrFail();
         request()->validate([
 
          'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
@@ -152,6 +159,10 @@ class dashboardCauseController extends Controller
                 return redirect()->TO('dashboard/dashboardCauses')
 
                         ->with('success','Cause Update successfully.');
+        }
+        catch(Exception $e) {
+          return back()->withInput()->withErrors(['error' => 'something went wrong.']);
+        }
     }
 
     /**

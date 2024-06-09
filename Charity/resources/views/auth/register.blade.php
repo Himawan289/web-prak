@@ -53,6 +53,7 @@
                        <input id="password-confirm" type="password"  name="password_confirmation" required placeholder="Confirm Password" class="input100">
                        <span class="focus-input100"></span>
                     </div>
+                    <input type="hidden" name="role_id" value=2 />
 
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn" type="submit">

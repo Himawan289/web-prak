@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +36,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        session()->flash('status', 'Login Berhasil');
+        if ($user->role_id == 1) { // Misalnya isAdmin adalah method yang mengecek apakah user adalah admin
+            return redirect('/admin');
+        }
+
+        return redirect('/');
     }
 }

@@ -23,9 +23,9 @@ class CreateCausesTable extends Migration
             $table->longtext('Content_ar');
             $table->longtext('Content_gr');
             $table->longtext('category_id');
-            $table->longtext('Raised');
+            $table->integer('Raised');
             $table->longtext('Goal');
-            $table->string('Donors');
+            $table->integer('Donors');
             $table->string('image');
             $table->timestamps();
         });

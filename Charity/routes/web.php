@@ -10,7 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Illuminate\Http\Request;
+
+// use Illuminate\Routing\Route;
+
+use App\Http\Controllers\DonateController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+
+// use Illuminate\Support\Facades\Session;
+
 /*
 |--------------------------------------------------------------------------
 | English
@@ -90,6 +99,15 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('dashboard/dashboardMessages','dashboardmessageController');
     Route::resource('dashboard/dashboardGalleres','dashboardGalleryController');
 });
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('/donate', [DonateController::class, 'store'])->name('donate.store');
+});
+
+Route::get('/donations/{cause}', [DonateController::class, 'findByCause'])->name('donate.byCause');
+
+
 /*
 |--------------------------------------------------------------------------
 | resource

@@ -27,6 +27,7 @@
         "mcamara/laravel-localization": "^1.6",
         "mews/purifier": "^3.2",
         "paypal/rest-api-sdk-php": "^1.14",
+        "redot/laravel-toastify": "^1.0",
         "spatie/laravel-permission": "^3.11"
     },
     "require-dev": {

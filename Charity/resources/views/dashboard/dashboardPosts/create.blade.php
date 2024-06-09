@@ -1,5 +1,13 @@
 @extends('dashboard.layouts.postmain')
 @section('dashboardcontent')
+@if ($message = $errors->has('error'))
+<div class="alert alert-royal-blue alert-dismissible fade show mb-0" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">×</span>
+</button>
+<i class="icon-material-outline-check mx-2"></i>
+<strong>Error!</strong> {{ $errors->first('error') }}</div>
+@endif
 <!-- ====================== links Posts Content Start store =============================================== -->
 <div class="main-content-container container-fluid px-4" id="editor">
   <!-- Page Header -->
@@ -19,19 +27,12 @@
           <!-- ====================== links Posts Content Start store =============================================== -->
           <form action="{{ route('dashboardPosts.store') }}" method="POST"  role="form" enctype="multipart/form-data" class="add-new-post">
             @csrf
-            <input class="form-control form-control-lg mb-3" type="text" placeholder="Your Post Title" name="Title_en">
-            <input class="form-control form-control-lg mb-3" type="text" placeholder="Your Post Slug" name="slug">
+            <input class="form-control form-control-lg mb-3" type="text" placeholder="Your Post Title English" name="Title_en">
             <input class="form-control form-control-lg mb-3" type="text" placeholder="Your Post Seo Title" name="seo_title">
+            <input class="form-control form-control-lg mb-3" type="text" placeholder="Your Post Slug" name="slug">
             <div class="form-control form-control-lg mb-3">
               <label for="displayEmail">Author Post</label>
-              <select class="custom-select" name="author_id">
-                <option value="1" selected="">Author</option>
-                <!-- ====================== links Posts Content Start store =============================================== -->
-                @foreach($Users as $User)
-                <option value="{{ $User->id }}">{{ $User->name }}</option>
-                @endforeach
-                <!-- ====================== links Posts Content Start store =============================================== -->
-              </select>
+              <input class="form-control form-control-lg mb-3" type="text" placeholder="Your Post Seo Title" name="author_id">
             </div>
             <div class="form-control form-control-lg mb-3">
               <label for="Category">Category Post</label>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\setting;
 use App\Cause;
+use App\Donate;
 use App\Role;
 use App\User;
 use Session;
@@ -51,7 +52,11 @@ class CauseController extends Controller
         $Cause = Cause::where('slug', '=', $slug)->firstOrFail();
          //To Get All Posts active OUT SIDE IN HOME VIEW
         $RentPosts = Post::orderBy('created_at','desc')->get();
-        return view('english.Causes.show',compact('Cause','RentPosts'));
+        $donations = Donate::where('cause_id', $Cause->id)
+            ->join('users', 'donates.user_id', '=', 'users.id')
+            ->select('donates.*', 'users.name as name')
+            ->paginate(5);
+        return view('english.Causes.show',compact('Cause','RentPosts', 'donations'));
     }
 
    

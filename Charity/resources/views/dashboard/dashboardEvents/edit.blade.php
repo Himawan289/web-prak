@@ -1,6 +1,14 @@
 @extends('dashboard.layouts.main')
 
 @section('dashboardcontent')
+@if ($message = $errors->has('error'))
+<div class="alert alert-royal-blue alert-dismissible fade show mb-0" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">×</span>
+</button>
+<i class="icon-material-outline-check mx-2"></i>
+<strong>Error!</strong> {{ $errors->first('error') }}</div>
+@endif
 <!-- ================================ links Events Content Start ========================================================================= -->
 <div class="main-content-container container-fluid px-4">
     <!-- Page Header -->
