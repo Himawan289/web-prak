@@ -186,7 +186,11 @@
 								</div>
 								<div class="d-flex justify-content-between donation align-items-center">
 									<!-- ===============================  Home  ======================================== -->
-									<a href="{!! url('Causes') !!}/{!! $Cause->slug !!}" class="primary-btn">Donate</a>
+									@auth
+										<a href="{!! url('Causes') !!}/{!! $Cause->slug !!}" class="primary-btn">Donate</a>
+									@else
+										<a href="{{ url('login') }}" class="primary-btn">Donate</a>
+									@endauth
 									<!-- ===============================  Home  ======================================== -->
 									<p><span class="ti-heart mr-1"></span> {!! $Cause->Donors !!} Donors</p>
 									<!-- ===============================  Home  ======================================== -->

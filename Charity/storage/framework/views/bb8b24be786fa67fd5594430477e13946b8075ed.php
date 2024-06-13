@@ -187,7 +187,11 @@
 								</div>
 								<div class="d-flex justify-content-between donation align-items-center">
 									<!-- ===============================  Home  ======================================== -->
-									<a href="<?php echo url('Causes'); ?>/<?php echo $Cause->slug; ?>" class="primary-btn">Donate</a>
+									<?php if(auth()->guard()->check()): ?>
+										<a href="<?php echo url('Causes'); ?>/<?php echo $Cause->slug; ?>" class="primary-btn">Donate</a>
+									<?php else: ?>
+										<a href="<?php echo e(url('login')); ?>" class="primary-btn">Donate</a>
+									<?php endif; ?>
 									<!-- ===============================  Home  ======================================== -->
 									<p><span class="ti-heart mr-1"></span> <?php echo $Cause->Donors; ?> Donors</p>
 									<!-- ===============================  Home  ======================================== -->

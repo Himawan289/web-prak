@@ -87,13 +87,34 @@
                 @guest
                 <!-- =============================== BASE ======================================== -->
                 <a href="{{ route('login') }}" class="genric-btn primary small"><i class=" icon-material-outline-face"></i> {{ __('Login') }}</a>
-                @else
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();" class="genric-btn primary small"><i class="icon-feather-log-in"></i> {{ __('Logout') }}</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
                 @endguest
+                @auth
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" 
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                     <!-- ============================================= Name SiteTitle ============================================= -->
+                    {{-- <img class="user-avatar rounded-circle20 mr-2" src="{!! asset(Auth::user()->avatar) !!}" alt="Admin Avatar"> --}}
+                    <span class="d-none d-md-inline-block mr-2">{{ Auth::user()->name }}</span>
+                  </a>
+                   <!-- ============================================= Name SiteTitle ============================================= -->
+                  <div class="dropdown-menu dropdown-menu-small">
+                     <!-- ============================================= Name SiteTitle ============================================= -->
+                      <a class="dropdown-item" href="{{ url('dashboard/dashboardUsers') }}/{{ Auth::user()->name }}/edit">
+                        <i class="icon-feather-edit"></i> Edit Profile</a>
+                           <!-- ============================================= Name SiteTitle ============================================= -->
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <!-- ============================================= Name SiteTitle ============================================= -->
+                          <i class=" icon-feather-log-out text-danger"></i> {{ __('Logout') }} </a>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                          </form>
+                           <!-- ============================================= Name SiteTitle ============================================= -->
+                        </div>
+                      </li>
+                @endauth
                 <!-- =============================== BASE ======================================== -->
                 
             </div>

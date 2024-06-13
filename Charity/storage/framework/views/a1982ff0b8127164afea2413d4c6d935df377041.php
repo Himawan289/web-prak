@@ -87,12 +87,33 @@
                 <?php if(auth()->guard()->guest()): ?>
                 <!-- =============================== BASE ======================================== -->
                 <a href="<?php echo e(route('login')); ?>" class="genric-btn primary small"><i class=" icon-material-outline-face"></i> <?php echo e(__('Login')); ?></a>
-                <?php else: ?>
-                <a href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();" class="genric-btn primary small"><i class="icon-feather-log-in"></i> <?php echo e(__('Logout')); ?></a>
-                <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
-                    <?php echo csrf_field(); ?>
-                </form>
+                <?php endif; ?>
+                <?php if(auth()->guard()->check()): ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" 
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                     <!-- ============================================= Name SiteTitle ============================================= -->
+                    
+                    <span class="d-none d-md-inline-block mr-2"><?php echo e(Auth::user()->name); ?></span>
+                  </a>
+                   <!-- ============================================= Name SiteTitle ============================================= -->
+                  <div class="dropdown-menu dropdown-menu-small">
+                     <!-- ============================================= Name SiteTitle ============================================= -->
+                      <a class="dropdown-item" href="<?php echo e(url('dashboard/dashboardUsers')); ?>/<?php echo e(Auth::user()->name); ?>/edit">
+                        <i class="icon-feather-edit"></i> Edit Profile</a>
+                           <!-- ============================================= Name SiteTitle ============================================= -->
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item text-danger" href="<?php echo e(route('logout')); ?>"
+                          onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <!-- ============================================= Name SiteTitle ============================================= -->
+                          <i class=" icon-feather-log-out text-danger"></i> <?php echo e(__('Logout')); ?> </a>
+                          <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                            <?php echo csrf_field(); ?>
+                          </form>
+                           <!-- ============================================= Name SiteTitle ============================================= -->
+                        </div>
+                      </li>
                 <?php endif; ?>
                 <!-- =============================== BASE ======================================== -->
                 

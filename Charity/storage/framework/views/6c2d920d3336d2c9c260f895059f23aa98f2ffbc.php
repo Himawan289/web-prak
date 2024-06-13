@@ -87,6 +87,7 @@
         </div>
           <div class="nav-wrapper">
             <ul class="nav flex-column">
+              <?php if(Auth::user()->role_id == 1): ?>
               <li class="nav-item">
                 <!-- ============================================= nav admin Site ============================================= -->
                 <a class="nav-link active" href="<?php echo e(url('admin')); ?>">
@@ -94,6 +95,7 @@
                   <span>Dashboard</span>
                 </a>
               </li>
+              <?php endif; ?>
                <!-- ============================================= nav admin Site ============================================= -->
               <li class="nav-item">
                 <a class="nav-link" href="<?php echo e(url('dashboard/dashboardUsers')); ?>">
@@ -102,6 +104,7 @@
                 </a>
               </li>
                <!-- ============================================= nav admin Site ============================================= -->
+              <?php if(Auth::user()->role_id == 1): ?>
               <li class="nav-item">
                 <a class="nav-link " href="<?php echo e(url('dashboard/dashboardRoles')); ?>">
                   <i class="icon-feather-lock"></i>
@@ -171,6 +174,7 @@
                   <span>General Settings</span>
                 </a>
               </li>
+              <?php endif; ?>
                <!-- ============================================= nav admin Site ============================================= -->
             </ul>
           </div>

@@ -84,10 +84,10 @@ Route::get('missing', function () {
 |--------------------------------------------------------------------------
 |
 */
+Route::resource('dashboard/dashboardUsers','AdminUserController');
 Route::group(['middleware' => 'admin'], function () {
     Route::resource('admin','dashboardController');
     Route::resource('dashboard/dashboardSettings','dashboardSettingsController');
-    Route::resource('dashboard/dashboardUsers','AdminUserController');
     Route::resource('dashboard/dashboardRoles','dashboardRoleController');
     Route::resource('dashboard/dashboardPosts','dashboardPostController');
     Route::resource('dashboard/dashboardCategores','dashboardCategoryController');
