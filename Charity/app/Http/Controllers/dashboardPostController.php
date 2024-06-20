@@ -68,19 +68,19 @@ class dashboardPostController extends Controller
       // New Post
       $Post = new Post;
       $Post->Title_en = $request->input('Title_en');
-      $Post->Title_ar = $request->input('Title_ar');
-      $Post->Title_gr = $request->input('Title_gr');
+      $Post->Title_ar = $request->input('Title_ar') ? $request->input('Title_ar') : $request->input('Title_en');
+      $Post->Title_gr = $request->input('Title_gr') ? $request->input('Title_gr') : $request->input('Title_en');
       $Post->author_id = $request->input('author_id');
       $Post->category_id = $request->input('category_id');
       $Post->slug = $request->input('slug');
-      $Post->seo_title = $request->input('seo_title');
-      $Post->excerpt = $request->input('excerpt');
+      $Post->seo_title = $request->input('seo_title') ? $request->input('seo_title') : $request->input('Title_en');
+      $Post->excerpt = $request->input('excerpt') ? $request->input('excerpt') : "";
       $Post->body_en = $request->input('body_en');
-      $Post->body_ar = $request->input('body_ar');
-      $Post->body_gr = $request->input('body_gr');
-      $Post->meta_description = $request->input('meta_description');
-      $Post->meta_keywords = $request->input('meta_keywords');
-      $Post->featured = $request->input('featured');
+      $Post->body_ar = $request->input('body_ar') ? $request->input('body_ar') : $request->input('body_en');
+      $Post->body_gr = $request->input('body_gr') ? $request->input('body_gr') : $request->input('body_en');
+      $Post->meta_description = $request->input('meta_description') ? $request->input('meta_description') : "";
+      $Post->meta_keywords = $request->input('meta_keywords') ? $request->input('meta_keywords') : "";
+      $Post->featured = $request->input('featured') ? $request->input('featured') : 0;
       // THIS FUNCTION UPDATE NEW IMAGE Settings IN PAGE Settings UPDATE //
       if ($request->file('image')){  
         $file = $request->file('image');
@@ -139,19 +139,19 @@ class dashboardPostController extends Controller
             'image' => 'mimes:jpeg,png,jpg', //only allow this type extension file.
         ]);
         $Post->Title_en = $request->input('Title_en');
-        $Post->Title_ar = $request->input('Title_ar');
-        $Post->Title_gr = $request->input('Title_gr');
+        $Post->Title_ar = $request->input('Title_ar') ? $request->input('Title_ar') : $request->input('Title_en');
+        $Post->Title_gr = $request->input('Title_gr') ? $request->input('Title_gr') : $request->input('Title_en');
         $Post->author_id = $request->input('author_id');
         $Post->category_id = $request->input('category_id');
         $Post->slug = $request->input('slug');
-        $Post->seo_title = $request->input('seo_title');
+        $Post->seo_title = $request->input('seo_title') ? $request->input('seo_title') : $request->input('Title_en');
         $Post->excerpt = $request->input('excerpt');
         $Post->body_en = $request->input('body_en');
-        $Post->body_ar = $request->input('body_ar');
-        $Post->body_gr = $request->input('body_gr');
-        $Post->meta_description = $request->input('meta_description');
-        $Post->meta_keywords = $request->input('meta_keywords');
-        $Post->featured = $request->input('featured');
+        $Post->body_ar = $request->input('body_ar') ? $request->input('body_ar') : $request->input('body_en');
+        $Post->body_gr = $request->input('body_gr') ? $request->input('body_gr') : $request->input('body_en');
+        $Post->meta_description = $request->input('meta_description') ? $request->input('meta_description') : "";
+        $Post->meta_keywords = $request->input('meta_keywords') ? $request->input('meta_keywords') : "";
+        $Post->featured = $request->input('featured') ? $request->input('featured') : 0;
         // THIS FUNCTION UPDATE NEW IMAGE Settings IN PAGE Settings UPDATE //
         if ($request->file('image')){  
           File::delete($Post->image);

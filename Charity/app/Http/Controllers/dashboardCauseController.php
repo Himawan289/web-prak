@@ -65,14 +65,14 @@ class dashboardCauseController extends Controller
       ]);
       $Cause = new Cause;
       $Cause->Title_en = $request->input('Title_en');
-      $Cause->Title_ar = $request->input('Title_ar');
-      $Cause->Title_gr = $request->input('Title_gr');
+      $Cause->Title_ar = $request->input('Title_ar') ? $request->input('Title_ar') : $request->input('Title_en');
+      $Cause->Title_gr = $request->input('Title_gr') ? $request->input('Title_gr') : $request->input('Title_en');
       $Cause->slug = $request->input('slug');
       $Cause->Raised = $request->input('Raised');
       $Cause->Goal = $request->input('Goal');
       $Cause->Content_en = $request->input('Content_en');
-      $Cause->Content_ar = $request->input('Content_ar');
-      $Cause->Content_gr = $request->input('Content_gr');
+      $Cause->Content_ar = $request->input('Content_ar') ? $request->input('Content_ar') : $request->input('Content_en');
+      $Cause->Content_gr = $request->input('Content_gr') ? $request->input('Content_gr') : $request->input('Content_en');
       $Cause->Donors = $request->input('Donors');
       $Cause->category_id = $request->input('category_id');
       // THIS FUNCTION UPDATE NEW IMAGE Settings IN PAGE Settings UPDATE //
@@ -131,14 +131,14 @@ class dashboardCauseController extends Controller
 
        ]);
         $Cause->Title_en = $request->input('Title_en');
-        $Cause->Title_ar = $request->input('Title_ar');
-        $Cause->Title_gr = $request->input('Title_gr');
+        $Cause->Title_ar = $request->input('Title_ar') ? $request->input('Title_ar') : $request->input('Title_en');
+        $Cause->Title_gr = $request->input('Title_gr') ? $request->input('Title_gr') : $request->input('Title_en');
         $Cause->slug = $request->input('slug');
         $Cause->Raised = $request->input('Raised');
         $Cause->Goal = $request->input('Goal');
         $Cause->Content_en = $request->input('Content_en');
-        $Cause->Content_ar = $request->input('Content_ar');
-        $Cause->Content_gr = $request->input('Content_gr');
+        $Cause->Content_ar = $request->input('Content_ar') ? $request->input('Content_ar') : $request->input('Content_en');
+        $Cause->Content_gr = $request->input('Content_gr') ? $request->input('Content_gr') : $request->input('Content_en');
         $Cause->Donors = $request->input('Donors');
         $Cause->category_id = $request->input('category_id');
         // THIS FUNCTION UPDATE NEW IMAGE Settings IN PAGE Settings UPDATE //

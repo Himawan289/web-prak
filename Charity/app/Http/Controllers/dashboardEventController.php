@@ -63,11 +63,11 @@ class dashboardEventController extends Controller
       ]);
       $Event = new Event;
       $Event->Title_en = $request->input('Title_en');
-      $Event->Title_ar = $request->input('Title_ar');
-      $Event->Title_gr = $request->input('Title_gr');
+      $Event->Title_ar = $request->input('Title_ar') ? $request->input('Title_ar') : $request->input('Title_en');
+      $Event->Title_gr = $request->input('Title_gr') ? $request->input('Title_gr') : $request->input('Title_en');
       $Event->Content_en = $request->input('Content_en');
-      $Event->Content_ar = $request->input('Content_ar');
-      $Event->Content_gr = $request->input('Content_gr');
+      $Event->Content_ar = $request->input('Content_ar') ? $request->input('Content_ar') : $request->input('Content_en');
+      $Event->Content_gr = $request->input('Content_gr') ? $request->input('Content_gr') : $request->input('Content_en');
       $Event->StartTime = $request->input('StartTime');
       $Event->slug = $request->input('slug');
       $Event->Days = $request->input('Days');
@@ -130,11 +130,11 @@ class dashboardEventController extends Controller
 
        ]);
         $Event->Title_en = $request->input('Title_en');
-        $Event->Title_ar = $request->input('Title_ar');
-        $Event->Title_gr = $request->input('Title_gr');
+        $Event->Title_ar = $request->input('Title_ar') ? $request->input('Title_ar') : $request->input('Title_en');
+        $Event->Title_gr = $request->input('Title_gr') ? $request->input('Title_gr') : $request->input('Title_en');
         $Event->Content_en = $request->input('Content_en');
-        $Event->Content_ar = $request->input('Content_ar');
-        $Event->Content_gr = $request->input('Content_gr');
+        $Event->Content_ar = $request->input('Content_ar') ? $request->input('Content_ar') : $request->input('Content_en');
+        $Event->Content_gr = $request->input('Content_gr') ? $request->input('Content_gr') : $request->input('Content_en');
         $Event->StartTime = $request->input('StartTime');
         $Event->slug = $request->input('slug');
         $Event->Days = $request->input('Days');
