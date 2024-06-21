@@ -12,7 +12,8 @@
             <div class="row justify-content-lg-end align-items-center banner-content">
                 <div class="col-lg-5">
                     <h1 class="text-white">Our Events</h1>
-                    <p>To implement sustainable programs that improve access worldwide to investment, opportunity.</p>
+                    <p>Selamat datang di bagian Acara Donasi Kami, tempat Anda dapat menemukan informasi tentang berbagai kegiatan penggalangan dana yang kami selenggarakan. Kami berkomitmen untuk menyelenggarakan acara-acara yang bertujuan untuk mendukung berbagai inisiatif kemanusiaan dan sosial
+                    </p>
                 </div>
             </div>
         </div>

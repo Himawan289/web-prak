@@ -50,14 +50,14 @@
                         </button>
                     </div>
                       
-                    <div class="text-center p-t-90">
+                    {{-- <div class="text-center p-t-90">
                         @if (Route::has('password.request'))
                         <a class="txt1" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }} 
                             
                         </a>
                         @endif
-                    </div>
+                    </div> --}}
                 </form>
             </div>
         </div>

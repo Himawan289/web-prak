@@ -95,6 +95,7 @@ class dashboardCauseController extends Controller
                       ->with('success','Cause created successfully.');
         }
         catch(Exception $e) {
+          // dd($e);
           return back()->withInput()->withErrors(['error' => 'something went wrong.']);
         }
     }

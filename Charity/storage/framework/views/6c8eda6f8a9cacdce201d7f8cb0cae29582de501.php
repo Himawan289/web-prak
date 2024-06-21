@@ -53,14 +53,7 @@
                         </button>
                     </div>
                       
-                    <div class="text-center p-t-90">
-                        <?php if(Route::has('password.request')): ?>
-                        <a class="txt1" href="<?php echo e(route('password.request')); ?>">
-                            <?php echo e(__('Forgot Your Password?')); ?> 
-                            
-                        </a>
-                        <?php endif; ?>
-                    </div>
+                    
                 </form>
             </div>
         </div>

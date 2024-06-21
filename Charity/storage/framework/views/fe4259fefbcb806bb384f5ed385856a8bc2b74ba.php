@@ -12,7 +12,8 @@
             <div class="row  align-items-center banner-content">
                 <div class="col-lg-5">
                     <h1 class="text-white">Our Causes</h1>
-                    <p>To implement sustainable programs that improve access worldwide to investment, opportunity.</p>
+                    <p>Causes adalah platform yang berdedikasi untuk mempromosikan berbagai inisiatif sosial dan lingkungan. Kami menghubungkan individu dan komunitas dengan peluang untuk berkontribusi dalam proyek-proyek yang bermakna, mulai dari penggalangan dana hingga kampanye kesadaran, guna menciptakan dampak positif yang berkelanjutan di seluruh dunia.
+                    </p>
                 </div>
             </div>
         </div>

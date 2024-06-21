@@ -33,23 +33,30 @@
                         <label for="feFirstName">Name</label>
                         <input type="text" class="form-control" id="feFirstName" placeholder="First Name" name="name" value="{{ $User->name }}"> </div>
                         <div class="form-group col-md-6">
-                          <label for="feInputState">Roles</label>
-                          <select id="feInputState" class="form-control" name="role_id" value="{{ $User->role_id }}"> 
-                            <!-- ============================================= links Content Start User ============================================= -->
-                            @if(isset($User->role->display_name))
-                             <option value="{{ $User->role_id }}">{{ $User->role->display_name }}</option>
+                          <!-- ============================================= links Content Start User ============================================= -->
+                          @if ($User->role_id == 1) 
+                              <label for="feInputState">Roles</label>
+                              <select id="feInputState" class="form-control" name="role_id" value="{{ $User->role_id }}"> 
+
+                              @if(isset($User->role->display_name))
+                               <option value="{{ $User->role_id }}">{{ $User->role->display_name }}</option>
+                              @else
+                               <span class="badge badge-pill badge-info">NO Role</span>
+                              @endif
+                              @if($Roles !== NULL)
+                              @foreach($Roles as $Role)
+                              <option value="{{ $Role->id }}">{{ $Role->display_name }}</option>
+                              @endforeach
+                              @else
+                              <span class="badge badge-pill badge-info">NO Role</span>
+                              @endif
+                              </select> 
+
                             @else
-                             <span class="badge badge-pill badge-info">NO Role</span>
-                            @endif
-                            @if($Roles !== NULL)
-                            @foreach($Roles as $Role)
-                            <option value="{{ $Role->id }}">{{ $Role->display_name }}</option>
-                            @endforeach
-                            @else
-                            <span class="badge badge-pill badge-info">NO Role</span>
+                              <input type="hidden" name="role_id" value="2">
+                                
                             @endif
                             <!-- ============================================= links Content Start User ============================================= -->
-                          </select> 
                         </div>
                       </div> 
                       <!-- ============================================= links Content Start User ============================================= -->

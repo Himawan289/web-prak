@@ -34,23 +34,30 @@
                         <label for="feFirstName">Name</label>
                         <input type="text" class="form-control" id="feFirstName" placeholder="First Name" name="name" value="<?php echo e($User->name); ?>"> </div>
                         <div class="form-group col-md-6">
-                          <label for="feInputState">Roles</label>
-                          <select id="feInputState" class="form-control" name="role_id" value="<?php echo e($User->role_id); ?>"> 
-                            <!-- ============================================= links Content Start User ============================================= -->
-                            <?php if(isset($User->role->display_name)): ?>
-                             <option value="<?php echo e($User->role_id); ?>"><?php echo e($User->role->display_name); ?></option>
+                          <!-- ============================================= links Content Start User ============================================= -->
+                          <?php if($User->role_id == 1): ?> 
+                              <label for="feInputState">Roles</label>
+                              <select id="feInputState" class="form-control" name="role_id" value="<?php echo e($User->role_id); ?>"> 
+
+                              <?php if(isset($User->role->display_name)): ?>
+                               <option value="<?php echo e($User->role_id); ?>"><?php echo e($User->role->display_name); ?></option>
+                              <?php else: ?>
+                               <span class="badge badge-pill badge-info">NO Role</span>
+                              <?php endif; ?>
+                              <?php if($Roles !== NULL): ?>
+                              <?php $__currentLoopData = $Roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <option value="<?php echo e($Role->id); ?>"><?php echo e($Role->display_name); ?></option>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              <?php else: ?>
+                              <span class="badge badge-pill badge-info">NO Role</span>
+                              <?php endif; ?>
+                              </select> 
+
                             <?php else: ?>
-                             <span class="badge badge-pill badge-info">NO Role</span>
-                            <?php endif; ?>
-                            <?php if($Roles !== NULL): ?>
-                            <?php $__currentLoopData = $Roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($Role->id); ?>"><?php echo e($Role->display_name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php else: ?>
-                            <span class="badge badge-pill badge-info">NO Role</span>
+                              <input type="hidden" name="role_id" value="2">
+                                
                             <?php endif; ?>
                             <!-- ============================================= links Content Start User ============================================= -->
-                          </select> 
                         </div>
                       </div> 
                       <!-- ============================================= links Content Start User ============================================= -->

@@ -41,7 +41,6 @@
 					<h1>
 						<!-- ===============================  Home  ======================================== -->
 						<?php echo e(Setting()->title_home_en); ?> <br>
-						children
 					</h1>
 					<!-- ===============================  Home  ======================================== -->
 					<h4><?php echo Setting()->sub_title_home_en; ?></h4>
@@ -136,7 +135,7 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="feature-item">
 						<i class="fi flaticon-bathroom"></i>
-						<h4>Become Bolunteer</h4>
+						<h4>Become Volunteer</h4>
 						<!-- ===============================  Home  ======================================== -->
 						<p><?php echo Setting()->content_feature_three_en; ?></p>
 						<!-- ===============================  Home  ======================================== -->

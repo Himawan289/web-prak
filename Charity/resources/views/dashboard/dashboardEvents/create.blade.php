@@ -14,7 +14,7 @@
   <div class="page-header row no-gutters py-4">
     <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
       <span class="text-uppercase page-subtitle">Events</span>
-      <h3 class="page-title">tes<i class="icon-line-awesome-tags"></i> Add Event</h3>
+      <h3 class="page-title"><i class="icon-line-awesome-tags"></i> Add Event</h3>
     </div>
   </div>
   <!-- ================================ links Events Content Start ========================================================================= -->
